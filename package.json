@@ -1,0 +1,30 @@
+{
+  "name": "piet-relative-push-optimizer",
+  "version": "1.0.0",
+  "description": "Compute the optimal command to push an integer using the last value of the stack in Piet.",
+  "main": "main.ts",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "start": "ts-node main.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dnek/piet-relative-push-optimizer.git"
+  },
+  "keywords": [
+    "piet"
+  ],
+  "author": {
+    "email": "dnek.app@gmail.com",
+    "name": "dnek",
+    "url": "http://dnek.cf"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dnek/piet-relative-push-optimizer/issues"
+  },
+  "homepage": "https://github.com/dnek/piet-relative-push-optimizer#readme"
+}
