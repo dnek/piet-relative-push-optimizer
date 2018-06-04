@@ -3,14 +3,20 @@ Compute the optimal command to push an integer using the last value of the stack
 
 ## Set Up
 
-`$ npm install`
+```
+$ npm install
+```
 
 ## Usage
 
 To compute from l to r, 
 
-`$ npm start l r`
+```
+$ npm start l r
+```
 
 From [ls, le) to [rs, re),
 
-`$ npm start ls le rs re`
+```
+$ npm start ls le rs re
+```
