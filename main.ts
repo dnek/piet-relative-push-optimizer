@@ -1,7 +1,28 @@
 console.time('time');
 
-//Search [ls, le) -> [rs, re). They must be natural integers.
-const ls = 65, le = 91, rs = 32, re = 127;
+import fs = require('fs');
+
+//Search l -> r or [ls, le) -> [rs, re).
+//They must be natural integers.
+let ls = 0, le = 1, rs = 0, re = 1;
+switch (process.argv.length) {
+  case 4:
+    ls = Number(process.argv[2]);
+    le = Number(process.argv[2]) + 1;
+    rs = Number(process.argv[3]);
+    re = Number(process.argv[3]) + 1;
+    break;
+  case 6:
+    ls = Number(process.argv[2]);
+    le = Number(process.argv[3]);
+    rs = Number(process.argv[4]);
+    re = Number(process.argv[5]);
+    break;
+  default:
+    console.log(`${process.argv.length} args is invalid.`);
+    process.exit(1);
+    break;
+}
 
 const costMemo: number[][] = new Array(le),
   comMemo: string[][] = new Array(le),
@@ -37,7 +58,7 @@ const optimize = (l: number, r: number) => {
           comMemo[l][num] = com;
         }
       }
-      if(rest < 1){
+      if(rest < 1 || s.length > rest + 1){
         return;
       }
       for(let j = rest - 1; j > 0; j--){
@@ -70,11 +91,19 @@ const optimize = (l: number, r: number) => {
   return {cost: cost, command: optimized ? command : r.toString()};
 };
 
+const filename = `example/${ls}-${le}_${rs}-${re}.txt`;
+const ws = fs.createWriteStream(filename, {encoding: 'utf8'});
+const all = (le - ls) * (re - rs);
 for(let i = ls; i < le; i++){
+  const ever = (i - ls) * (re - rs) - rs + 1;
   for(let j = rs; j < re; j++){
     let x = optimize(i, j);
-    console.log(`${i} -> ${j} cost: ${x.cost} com: ${x.command}`);
+    // console.log(`${i} -> ${j} cost: ${x.cost} com: ${x.command}`);
+    ws.write(`${i} -> ${j} cost: ${x.cost} com: ${x.command}\n`);
+    process.stdout.write(`computing...${(ever + j) * 100 / all | 0}%\r`);
   }
 }
+ws.end();
+console.log(`wrote ${all} commands into ${filename}.`);
 
 console.timeEnd('time');

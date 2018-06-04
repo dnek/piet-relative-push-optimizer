@@ -26,5 +26,10 @@
   "bugs": {
     "url": "https://github.com/dnek/piet-relative-push-optimizer/issues"
   },
-  "homepage": "https://github.com/dnek/piet-relative-push-optimizer#readme"
+  "homepage": "https://github.com/dnek/piet-relative-push-optimizer#readme",
+  "dependencies": {
+    "@types/node": "^10.3.0",
+    "ts-node": "^6.1.0",
+    "typescript": "^2.9.1"
+  }
 }
