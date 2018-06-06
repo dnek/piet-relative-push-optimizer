@@ -40,16 +40,17 @@ const optimize = (l: number, r: number) => {
     const rec = (s: number[], rest: number, com: string) => {
       if(s[s.length - 1] === 0 && com !== 'd!')return;
       if(s.length === 1){
-        const num = s[0];
+        const num = s[0],
+          numIndex = num - rs;
         if(num === r){
           if(!optimized){
             cost = i;
             command = com;
             optimized = true;
           }
-        }else if(num - rs > -1 && num < re && costMemo[num - rs] === 0){
-          costMemo[num - rs] = i;
-          comMemo[num - rs] = com;
+        }else if(numIndex > -1 && num < re && costMemo[numIndex] === 0){
+          costMemo[numIndex] = i;
+          comMemo[numIndex] = com;
         }
       }
       if(rest < 1 || s.length > rest + 1){

@@ -20,3 +20,9 @@ From [ls, le) to [rs, re),
 ```
 $ npm start ls le rs re
 ```
+
+When you include negative integers, use "--" like
+
+```
+$ npm start -- -32 32 -64 64
+```
